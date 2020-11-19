@@ -1,11 +1,16 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import LandingNav from '../navigation/landingNav'
 
 function Error() {
     return (
-        <Container>
-            <h3>Error: No such page exists.</h3>            
-        </Container>
+        <div>
+            <LandingNav />
+            <Jumbotron>            
+                <h3>Error: The page does not exist</h3>            
+            </Jumbotron>
+        </div>
+        
     )
 }
 

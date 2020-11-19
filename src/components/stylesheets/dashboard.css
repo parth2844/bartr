@@ -1,0 +1,11 @@
+.dashboard-profile {
+    background-color: aquamarine;
+    height: max-content;
+    border-right: 1px solid ;
+}
+
+.profile-img {
+    margin: 20px 0;
+    height: 50%;
+    width: 50%;
+}
