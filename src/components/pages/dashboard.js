@@ -84,9 +84,8 @@ class dashboard extends React.Component {
                     </Col>
                     <Col xs={12} md={7} className="user-collections">  
                         <Row noGutters={true} className="d-flex justify-content-end m-3">
-                            {/* Redirect to add new Item Page */}
                             <Button variant="primary" type="submit" className="">
-                                <Link to="additem" className="link-button">Add a New Item</Link>
+                                <Link to="/additem" className="link-button">Add a New Item</Link>
                             </Button>
                         </Row>
                         <h3 className="ml-3">My Items:</h3>                  

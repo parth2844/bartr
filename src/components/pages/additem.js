@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
+import NavBar from '../navigation/navbar'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
-import NavBar from '../navigation/navbar'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
+import ImageUploader from 'react-images-upload';
 
 export class AddItem extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export class AddItem extends Component {
         this.state = {
             productName: '',
             productDesc: '',
-            
+            pictures: [],
             name: "Parth Shah",
             address: "3801 Parkview Lane, Irvine, CA - 12312",
             phoneNo: "21232435665",
@@ -27,13 +28,18 @@ export class AddItem extends Component {
         this.setState({ [target.name]: target.value });
     };
 
+    onDrop = (picture) => {
+        this.setState({
+            pictures: this.state.pictures.concat(picture),
+        });
+    }
+
     handleSubmit = (event) => {
         event.preventDefault();
         console.log(this.state.productName);
         console.log(this.state.productDesc);
-
         // API Request to add item to user collection and redirect to dashboard
-
+        console.log(this.state.pictures);
         alert("Item Added Successfully");
         this.props.history.push("/dashboard") // Pass in userId prop
         
@@ -93,7 +99,17 @@ export class AddItem extends Component {
                                 placeholder="Product Description" 
                                 required
                                 />
-                            </Form.Group>                            
+                            </Form.Group>    
+
+                            <ImageUploader
+                                withIcon={true}
+                                buttonText='Choose images'
+                                label='Max file size: 5mb, accepted: jpg, png'
+                                onChange={this.onDrop}
+                                imgExtension={['.jpg', '.png']}
+                                maxFileSize={5242880}                                       
+                                withPreview={true}                        
+                            />                     
     
                             <Button variant="primary" type="submit">Add Item</Button>
                         </Form>

@@ -5,12 +5,14 @@ import Image from 'react-bootstrap/Image'
 import LandingNav from '../navigation/landingNav'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import ImageUploader from 'react-images-upload';
 import '../stylesheets/signup.css'
 
 class signup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            pictures: [],
             img: '/assets/noimage.jpg',
             email: '',
             password: '',
@@ -26,6 +28,12 @@ class signup extends React.Component {
     handleChange = ({target}) => {
         this.setState({ [target.name]: target.value });
     };
+
+    onDrop = (picture) => {
+        this.setState({
+            pictures: this.state.pictures.concat(picture),
+        });
+    }
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -52,12 +60,23 @@ class signup extends React.Component {
                 <LandingNav />
                 <Row noGutters={true} className="signup-page">
                     <Col xs={12} md={5} className="">
-                        <Row noGutters={true} className="d-flex justify-content-center mt-5">
+                        <Row noGutters={true} className="d-flex justify-content-center mt-2">
                             <Image src= {window.location.origin + this.state.img} roundedCircle alt="Profile Photo" className="main-img" height="300px"/>
                         </Row> 
-                        <Row noGutters={true} className="d-flex justify-content-center mt-5">
+                        <ImageUploader
+                            className="p-3"
+                            withIcon={true}
+                            buttonText='Choose images'
+                            label='Max file size: 5mb, accepted: jpg, png'
+                            onChange={this.onDrop}
+                            imgExtension={['.jpg', '.png']}
+                            maxFileSize={5242880}   
+                            singleImage={true}                                    
+                            withPreview={true}                        
+                        />
+                        {/* <Row noGutters={true} className="d-flex justify-content-center mt-5">
                             <Button>Upload Picture</Button>
-                        </Row>
+                        </Row> */}
                     </Col>
                     <Col xs={12} md={7} className="p-3">
                         <Form onSubmit={this.handleSubmit}>
@@ -159,7 +178,7 @@ class signup extends React.Component {
     
                             
     
-                            <Button variant="primary" type="submit">Sign Up</Button>
+                            <Button variant="primary" type="submit" className="mt-3">Sign Up</Button>
                         </Form>
                     </Col>
                 </Row>
