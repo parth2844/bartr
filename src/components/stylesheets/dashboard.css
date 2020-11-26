@@ -25,3 +25,13 @@
 .user-collections {
     background-color: #f2f2f2;
 }
+
+.link-button {
+    color: white;
+    text-decoration: none;
+}
+
+.link-button:hover {
+    color: white;
+    text-decoration: none;
+}

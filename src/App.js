@@ -7,6 +7,7 @@ import ProductPreview from './components/pages/productpreview'
 import Error from './components/pages/error'
 import Marketplace from './components/pages/marketplace';
 import Help from './components/pages/help';
+import AddItem from './components/pages/additem';
 
 function App() {
   return (    
@@ -19,6 +20,7 @@ function App() {
         <Route path="/dashboard" exact component={DashBoard} />
         <Route path="/productpreview/:productId" exact component={ProductPreview} />
         <Route path="/marketplace" exact component={Marketplace} />
+        <Route path="/additem" exact component={AddItem} />        
 
         <Route component={Error} />
       </Switch>

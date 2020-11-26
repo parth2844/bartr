@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
@@ -85,7 +86,7 @@ class dashboard extends React.Component {
                         <Row noGutters={true} className="d-flex justify-content-end m-3">
                             {/* Redirect to add new Item Page */}
                             <Button variant="primary" type="submit" className="">
-                                Add a New Item 
+                                <Link to="additem" className="link-button">Add a New Item</Link>
                             </Button>
                         </Row>
                         <h3 className="ml-3">My Items:</h3>                  
