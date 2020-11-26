@@ -2,55 +2,105 @@ import React from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
-import LandingNav from '../navigation/landingNav'
-import Form from 'react-bootstrap/Form'
+import NavBar from '../navigation/navbar'
 import Button from 'react-bootstrap/Button'
-import profile_pic from '../assets/noimage.jpg'
+import Container from 'react-bootstrap/Container'
+import ProductCardContainer from '../product/productcardcontainer'
+
 import '../stylesheets/dashboard.css'
 
-function dashboard() {
-    return (
-        <div>
-            <LandingNav />
-            <Row noGutters={true}>
-                <Col xs={12} md={5} className="dashboard-profile">
-                    <Row noGutters={true} className="d-flex justify-content-center">
-                        <Image src= {profile_pic} roundedCircle alt="Profile Photo" className="profile-img"/>
-                    </Row> 
-                    <Row noGutters={true} className="d-flex justify-content-center">
-                        <h3>Parth Shah</h3>
-                        
-                    </Row>
-                    <Row noGutters={true} className="ml-3">
-                        <h6>Address : 3801 Parkview Lane, Irvine, CA - 12312</h6>
-                    </Row>
-                    <Row noGutters={true} className="ml-3">
-                        <h6>Phone No: 21232435665</h6>
-                    </Row>
-                    <Row noGutters={true} className="ml-3">
-                        <h6>Email: parrth2e23@gmail.com</h6>
-                    </Row>
-                    <Button variant="primary" type="submit" className="m-3 pl-3 pr-3">
-                        Edit
-                    </Button>
-                </Col>
-                <Col xs={12} md={7} className="">                    
-                    <Row noGutters={true} className="ml-3">
-                        <h3>My Items:</h3>
-                    </Row>
-                    <Row noGutters={true} className="ml-3">
-                        <h3>Ongoing Offers:</h3>
-                    </Row>
-                    <Row noGutters={true} className="ml-3">
-                        <h3>Past Transactions:</h3>
-                    </Row>
-                    <Button variant="primary" type="submit" className="m-3 pl-3 pr-3">
-                        Add a New Item
-                    </Button>
-                </Col>
-            </Row>
-        </div>
-    )
+class dashboard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            myitems: [
+                {
+                    img: '/assets/table1.jpg',
+                    name: 'Table'
+                },
+                {
+                    img: '/assets/chair1.jpg',
+                    name: 'Chair'
+                }
+            ],
+
+            ongoing: [
+                {
+                    img: '/assets/table1.jpg',
+                    name: 'Table'
+                }
+            ],
+
+            past: [
+                {
+                    img: '/assets/chair1.jpg',
+                    name: 'Chair'
+                }
+            ],
+
+            name: "Parth Shah",
+            address: "3801 Parkview Lane, Irvine, CA - 12312",
+            phoneNo: "21232435665",
+            email: "parth@gmail.com"
+            
+        };
+    };
+
+    componentDidMount() {
+        // const {userId} = this.props.match.params; // Get userId from props
+
+        // Use userId to get user details, products and set state
+        // If userId does not exist in databse redirect to landing page
+    }
+
+    render() {
+        return (
+            <div>
+                <NavBar />
+                <Row noGutters={true}>
+                    <Col xs={12} md={5} className="dashboard-profile">
+                        <Row noGutters={true} className="d-flex justify-content-center">
+                            <Image src= {window.location.origin + '/assets/noimage.jpg'} roundedCircle alt="Profile Photo" className="profile-img"/>
+                        </Row> 
+                        <Row noGutters={true} className="d-flex justify-content-center user-name">
+                            <h3>{this.state.name}</h3>                        
+                        </Row>
+                        <Container>
+                            <Row noGutters={true} className="user-details">
+                                <h6><b>Address :</b> {this.state.address}</h6>
+                            </Row>
+                            <Row noGutters={true} className="user-details">
+                                <h6><b>Phone No:</b> {this.state.phoneNo}</h6>
+                            </Row>
+                            <Row noGutters={true} className="user-details">
+                                <h6><b>Email:</b> {this.state.email}</h6>
+                            </Row>
+                        </Container>
+                        <Button variant="primary" type="submit" className="m-3 pl-3 pr-3">
+                            {/* Non Functional for now */}
+                            Edit
+                        </Button>
+                    </Col>
+                    <Col xs={12} md={7} className="user-collections">  
+                        <Row noGutters={true} className="d-flex justify-content-end m-3">
+                            {/* Redirect to add new Item Page */}
+                            <Button variant="primary" type="submit" className="">
+                                Add a New Item 
+                            </Button>
+                        </Row>
+                        <h3 className="ml-3">My Items:</h3>                  
+                        <ProductCardContainer products={this.state.myitems}/>
+                        <h3 className="ml-3">Ongoing Offers:</h3>
+                        <ProductCardContainer products={this.state.ongoing}/>
+                        <h3 className="ml-3">Past Transactions:</h3>
+                        <ProductCardContainer products={this.state.past}/>
+                    </Col>
+                </Row>
+            </div>
+        )
+
+    }
+    
 }
 
 export default dashboard

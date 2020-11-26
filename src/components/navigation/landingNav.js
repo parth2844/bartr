@@ -1,12 +1,11 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import { QuestionCircle, PersonCircle } from 'react-bootstrap-icons';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import Logo from '../assets/logo2.png'
 import '../stylesheets/landingNav.css'
 
 class LandingNav extends React.Component {
@@ -36,14 +35,24 @@ class LandingNav extends React.Component {
         event.preventDefault();
         console.log(this.state.email);
         console.log(this.state.password);
+
+        // Make API request for login and get userId
+
+
+        // If correct Credentials
+        alert("Log In Success");
+        this.props.history.push("/dashboard") // Pass in userId prop
+        // If incorrect credentials
+        alert("Incorrect Login Credentials")
+
     }
 
     render() {
         return ( 
             <>    
             <Navbar expand="md" variant="dark" className="navigation-bar">
-                <Navbar.Brand href="/" className="navigation-bar-logo">
-                    <img src={Logo} height="75px"/>
+                <Navbar.Brand id="logo" href="/" className="navigation-bar-logo">
+                    <img src={window.location.origin + '/assets/logo2.png'} alt="Logo" height="75px"/>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbar-toggle" />
                 <Navbar.Collapse id="navbar-toggle">
@@ -103,4 +112,4 @@ class LandingNav extends React.Component {
     
 }
 
-export default LandingNav;
+export default withRouter(LandingNav);

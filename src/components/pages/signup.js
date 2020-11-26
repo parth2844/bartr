@@ -5,13 +5,13 @@ import Image from 'react-bootstrap/Image'
 import LandingNav from '../navigation/landingNav'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import profile_pic from '../assets/noimage.png'
 import '../stylesheets/signup.css'
 
 class signup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            img: '/assets/noimage.jpg',
             email: '',
             password: '',
             phone: '',
@@ -34,6 +34,15 @@ class signup extends React.Component {
         console.log(this.state.name);
         console.log(this.state.state);
         console.log(this.state.address);
+        
+        // Make Post request here
+
+        // If success
+        alert("Sign Up Success");
+        document.getElementById("logo").click();
+        // If Fail
+        alert("Sign Up unsuccessful. Try Again");
+        
     }
 
 
@@ -44,8 +53,11 @@ class signup extends React.Component {
                 <Row noGutters={true} className="signup-page">
                     <Col xs={12} md={5} className="">
                         <Row noGutters={true} className="d-flex justify-content-center mt-5">
-                            <Image src= {profile_pic} roundedCircle alt="Profile Photo" className="main-img" height="300px"/>
+                            <Image src= {window.location.origin + this.state.img} roundedCircle alt="Profile Photo" className="main-img" height="300px"/>
                         </Row> 
+                        <Row noGutters={true} className="d-flex justify-content-center mt-5">
+                            <Button>Upload Picture</Button>
+                        </Row>
                     </Col>
                     <Col xs={12} md={7} className="p-3">
                         <Form onSubmit={this.handleSubmit}>

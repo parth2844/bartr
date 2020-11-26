@@ -1,16 +1,11 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import LandingNav from '../navigation/landingNav'
-import '../stylesheets/landing.css'
 
-function landing() {
-
+function Help() {
     return (
-        <div className="landing-page">
+        <div className="help-page">
             <LandingNav />
-            <div className="landing-image">
-                <img className="image" src={window.location.origin + '/assets/barter2.jpg'} height="307px" />
-            </div>
             <Container className="landing-page-text">
                 <div className="text-desc">
                     <h3>Description :</h3>
@@ -32,4 +27,4 @@ function landing() {
     )
 }
 
-export default landing
+export default Help
